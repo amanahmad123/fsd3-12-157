@@ -1,6 +1,2 @@
-
-// const add = (a , b) => {
-//     return a + b;
-// };
-
-// const add2 = (a, b) => a + b;
+task.emit("working", "chair");
+// task.emit("checkout", "Aman Ahamad");
