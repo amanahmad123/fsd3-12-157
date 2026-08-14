@@ -42,3 +42,4 @@ task.emit("greet", "Working");
 task.off("checkout", checkout);
 task.emit("checkout", "chausariya");
 task.emit("exit", "Shutdown");
+
