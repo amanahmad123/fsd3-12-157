@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopX — Premium Store</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #6b7280;
+      --soft: #f5f7fb;
+      --line: #e8ebf2;
+      --accent: #635bff;
+      --accent-dark: #4f46e5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .topbar {
+      background: #111827;
+      color: #fff;
+      font-size: .82rem;
+    }
+
+    .navbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: -.05em;
+      font-size: 1.5rem;
+    }
+
+    .brand-dot { color: var(--accent); }
+
+    .nav-link {
+      font-weight: 600;
+      color: #374151 !important;
+      margin: 0 .25rem;
+    }
+
+    .nav-link:hover { color: var(--accent) !important; }
+
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(99,91,255,.20), transparent 28%),
+        radial-gradient(circle at 15% 80%, rgba(56,189,248,.14), transparent 25%),
+        linear-gradient(135deg, #f8f9ff 0%, #eef1ff 100%);
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .9rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #e4e7f5;
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: .82rem;
+      box-shadow: 0 10px 30px rgba(17,24,39,.06);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.6rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 900;
+      max-width: 760px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #635bff, #0ea5e9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      color: #667085;
+      font-size: 1.1rem;
+      max-width: 600px;
+      line-height: 1.75;
+    }
+
+    .btn-main {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: .9rem 1.35rem;
+      box-shadow: 0 12px 25px rgba(99,91,255,.22);
+    }
+
+    .btn-main:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(460px, 90vw);
+      height: 470px;
+      margin: auto;
+      border-radius: 34px;
+      background: linear-gradient(145deg, #111827, #273449);
+      box-shadow: 0 35px 80px rgba(17,24,39,.24);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      background: rgba(99,91,255,.28);
+      filter: blur(4px);
+      top: -100px;
+      right: -80px;
+    }
+
+    .phone {
+      position: absolute;
+      width: 205px;
+      height: 390px;
+      background: #05070b;
+      border: 5px solid #3d4350;
+      border-radius: 34px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(7deg);
+      box-shadow: 0 30px 45px rgba(0,0,0,.35);
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 7px;
+      border-radius: 27px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 18%),
+        linear-gradient(145deg, #1e1b4b, #4338ca 48%, #0ea5e9);
+      overflow: hidden;
+    }
+
+    .phone-screen::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      bottom: 45px;
+      right: -40px;
+    }
+
+    .camera {
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 74px;
+      height: 22px;
+      border-radius: 20px;
+      background: #000;
+      z-index: 2;
+    }
+
+    .floating-price {
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      background: #fff;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      z-index: 3;
+    }
+
+    .floating-price small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-weight: 900;
+      letter-spacing: -.04em;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .category-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.5rem;
+      height: 100%;
+      background: #fff;
+      transition: .25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(17,24,39,.08);
+      border-color: #dfe2ff;
+    }
+
+    .category-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: #f0efff;
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .product-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      height: 100%;
+      transition: .25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 50px rgba(17,24,39,.10);
+    }
+
+    .product-image {
+      height: 270px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .product-image .emoji {
+      font-size: 6.5rem;
+      filter: drop-shadow(0 20px 18px rgba(17,24,39,.13));
+    }
+
+    .sale {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #111827;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      padding: .45rem .7rem;
+      border-radius: 999px;
+    }
+
+    .heart {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(17,24,39,.08);
+    }
+
+    .product-body { padding: 1.35rem; }
+
+    .rating { color: #f59e0b; font-size: .85rem; }
+
+    .product-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: .45rem 0;
+    }
+
+    .price {
+      font-weight: 900;
+      font-size: 1.35rem;
+    }
+
+    .old-price {
+      color: #9ca3af;
+      text-decoration: line-through;
+      font-size: .9rem;
+      margin-left: .35rem;
+    }
+
+    .feature-strip {
+      background: #111827;
+      color: #fff;
+      border-radius: 30px;
+      padding: 35px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .feature-item i {
+      font-size: 1.6rem;
+      color: #a5b4fc;
+    }
+
+    .newsletter {
+      border-radius: 30px;
+      background: linear-gradient(135deg, #111827, #312e81);
+      color: #fff;
+      padding: 70px 35px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .newsletter::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      right: -80px;
+      top: -100px;
+    }
+
+    .newsletter .form-control {
+      border: 0;
+      border-radius: 12px;
+      min-height: 52px;
+    }
+
+    footer {
+      background: #0b1120;
+      color: #aeb7c7;
+      padding: 55px 0 25px;
+    }
+
+    footer a {
+      color: #aeb7c7;
+      text-decoration: none;
+    }
+
+    footer a:hover { color: #fff; }
+
+    .footer-title {
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 991px) {
+      .hero { padding: 70px 0; }
+      .hero-card { margin-top: 50px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar py-2">
+    <div class="container d-flex justify-content-center">
+      <span><i class="bi bi-stars me-2"></i>Free shipping on orders above ₹999</span>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand brand" href="#">Shop<span class="brand-dot">X</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Why ShopX</a></li>
+        </ul>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-light rounded-circle" title="Search"><i class="bi bi-search"></i></button>
+          <button class="btn btn-light rounded-circle position-relative" title="Cart">
+            <i class="bi bi-bag"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container py-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <div class="hero-badge mb-4">
+              <i class="bi bi-lightning-charge-fill"></i>
+              New season. Better choices.
+            </div>
+
+            <h1 class="mb-4">
+              Upgrade your everyday with <span>better tech.</span>
+            </h1>
+
+            <p class="hero-copy mb-4">
+              Discover premium gadgets, smart accessories and everyday essentials
+              designed to make your life simpler, faster and more connected.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#products" class="btn btn-main">
+                Shop now <i class="bi bi-arrow-right ms-2"></i>
+              </a>
+              <a href="#categories" class="btn btn-outline-dark rounded-3 px-4 py-3 fw-bold">
+                Explore categories
+              </a>
+            </div>
+
+            <div class="d-flex gap-4 mt-5 text-secondary small fw-semibold">
+              <span><i class="bi bi-shield-check me-1"></i> Secure checkout</span>
+              <span><i class="bi bi-arrow-repeat me-1"></i> Easy returns</span>
+              <span><i class="bi bi-truck me-1"></i> Fast delivery</span>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="hero-card">
+              <div class="phone">
+                <div class="phone-screen"></div>
+                <div class="camera"></div>
+              </div>
+              <div class="floating-price">
+                <small>Featured</small>
+                <div class="fw-black fw-bold fs-5">iPhone XL</div>
+                <strong>₹90,000</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 gap-3">
+          <div>
+            <p class="text-primary fw-bold mb-2">SHOP BY CATEGORY</p>
+            <h2 class="section-title mb-0">Find your next favorite.</h2>
+          </div>
+          <a href="#products" class="text-dark fw-bold text-decoration-none">
+            View all <i class="bi bi-arrow-up-right ms-1"></i>
+          </a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="category-card">
+              <div class="category-icon"><i class="bi bi-phone"></i></div>
+              <h5 class="fw-bold">Smartphones</h5>
+              <p class="text-secondary mb-0">Powerful devices for work and play.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="category-card">
+              <div class="category-icon"><i class="bi bi-headphones"></i></div>
+              <h5 class="fw-bold">Audio</h5>
+              <p class="text-secondary mb-0">Immersive sound wherever you go.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="category-card">
+              <div class="category-icon"><i class="bi bi-smartwatch"></i></div>
+              <h5 class="fw-bold">Wearables</h5>
+              <p class="text-secondary mb-0">Smart tools that fit your lifestyle.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="category-card">
+              <div class="category-icon"><i class="bi bi-keyboard"></i></div>
+              <h5 class="fw-bold">Accessories</h5>
+              <p class="text-secondary mb-0">Small upgrades, big difference.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="products">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5 gap-3">
+          <div>
+            <p class="text-primary fw-bold mb-2">BESTSELLERS</p>
+            <h2 class="section-title mb-0">Made to impress.</h2>
+          </div>
+          <div class="text-secondary">Curated picks, trusted by shoppers.</div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-image">
+                <span class="sale">30% OFF</span>
+                <button class="heart"><i class="bi bi-heart"></i></button>
+                <div class="emoji">📱</div>
+              </div>
+              <div class="product-body">
+                <div class="rating">★★★★★ <span class="text-secondary">(128)</span></div>
+                <div class="product-name">iPhone XL</div>
+                <div><span class="price">₹90,000</span><span class="old-price">₹1,28,500</span></div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold">Add to cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-image">
+                <span class="sale">20% OFF</span>
+                <button class="heart"><i class="bi bi-heart"></i></button>
+                <div class="emoji">🎧</div>
+              </div>
+              <div class="product-body">
+                <div class="rating">★★★★★ <span class="text-secondary">(96)</span></div>
+                <div class="product-name">Pro Wireless Buds</div>
+                <div><span class="price">₹7,999</span><span class="old-price">₹9,999</span></div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold">Add to cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-image">
+                <span class="sale">15% OFF</span>
+                <button class="heart"><i class="bi bi-heart"></i></button>
+                <div class="emoji">⌚</div>
+              </div>
+              <div class="product-body">
+                <div class="rating">★★★★★ <span class="text-secondary">(74)</span></div>
+                <div class="product-name">Smart Watch Pro</div>
+                <div><span class="price">₹12,749</span><span class="old-price">₹14,999</span></div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold">Add to cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-image">
+                <span class="sale">25% OFF</span>
+                <button class="heart"><i class="bi bi-heart"></i></button>
+                <div class="emoji">⌨️</div>
+              </div>
+              <div class="product-body">
+                <div class="rating">★★★★★ <span class="text-secondary">(51)</span></div>
+                <div class="product-name">Mechanical Keyboard</div>
+                <div><span class="price">₹5,249</span><span class="old-price">₹6,999</span></div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="about">
+      <div class="container">
+        <div class="feature-strip">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-3">
+              <h3 class="fw-bold mb-0">Shopping, made effortless.</h3>
+            </div>
+
+            <div class="col-lg-9">
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="feature-item">
+                    <i class="bi bi-patch-check"></i>
+                    <div>
+                      <div class="fw-bold">Authentic products</div>
+                      <small class="text-white-50">Quality you can trust.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="feature-item">
+                    <i class="bi bi-truck"></i>
+                    <div>
+                      <div class="fw-bold">Fast delivery</div>
+                      <small class="text-white-50">Quick doorstep delivery.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="feature-item">
+                    <i class="bi bi-headset"></i>
+                    <div>
+                      <div class="fw-bold">Real support</div>
+                      <small class="text-white-50">We're here when you need us.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter mt-5">
+          <div class="row align-items-center g-4 position-relative" style="z-index:1;">
+            <div class="col-lg-6">
+              <p class="text-white-50 fw-bold mb-2">STAY IN THE LOOP</p>
+              <h2 class="display-6 fw-bold">Get the best deals first.</h2>
+              <p class="text-white-50 mb-0">Weekly drops, exclusive offers and useful tech picks. No spam.</p>
+            </div>
+
+            <div class="col-lg-5 ms-lg-auto">
+              <form class="d-flex gap-2">
+                <input type="email" class="form-control" placeholder="Your email address" required>
+                <button class="btn btn-light px-4 rounded-3 fw-bold" type="submit">Join</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="brand text-white mb-3">Shop<span class="brand-dot">X</span></div>
+          <p class="mb-4" style="max-width: 420px;">
+            Premium technology and everyday essentials, selected with care and delivered with confidence.
+          </p>
+          <div class="d-flex gap-3 fs-5">
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Shop</div>
+          <div class="d-grid gap-2">
+            <a href="#products">All products</a>
+            <a href="#categories">Categories</a>
+            <a href="#products">Deals</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Help</div>
+          <div class="d-grid gap-2">
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="footer-title">Secure shopping</div>
+          <p class="small">Your checkout and personal information are protected with industry-standard security.</p>
+          <div class="fs-4 d-flex gap-3">
+            <i class="bi bi-credit-card"></i>
+            <i class="bi bi-shield-lock"></i>
+            <i class="bi bi-lock"></i>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-secondary my-5">
+      <div class="d-flex flex-wrap justify-content-between gap-2 small">
+        <span>© 2026 ShopX. All rights reserved.</span>
+        <span>Built with Bootstrap 5</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.heart').forEach(button => {
+      button.addEventListener('click', () => {
+        const icon = button.querySelector('i');
+        icon.classList.toggle('bi-heart');
+        icon.classList.toggle('bi-heart-fill');
+      });
+    });
+
+    document.querySelectorAll('.product-card .btn-dark').forEach(button => {
+      button.addEventListener('click', () => {
+        const oldText = button.innerHTML;
+        button.innerHTML = '<i class="bi bi-check2 me-1"></i> Added to cart';
+        button.classList.remove('btn-dark');
+        button.classList.add('btn-success');
+
+        setTimeout(() => {
+          button.innerHTML = oldText;
+          button.classList.remove('btn-success');
+          button.classList.add('btn-dark');
+        }, 1400);
+      });
+    });
+
+    document.querySelector('.newsletter form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const button = e.target.querySelector('button');
+      button.textContent = 'Subscribed ✓';
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
