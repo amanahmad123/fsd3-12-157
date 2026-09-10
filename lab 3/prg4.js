@@ -20,7 +20,14 @@ const server = http.createServer((req, res) => {
         discount: 10
     };
 
-    const products = [product, product2];
+    const product3 = {
+        name: "OPPO",
+        price: 20000,
+        qty: 1,
+        discount: 10
+    };
+
+    const products = [product, product2, product3];
 
     res.end(JSON.stringify(products));
 });
