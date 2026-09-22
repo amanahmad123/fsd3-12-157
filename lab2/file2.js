@@ -21,4 +21,5 @@ await writeData("hello.txt", "Hello Aman");
 
 await appendData("hello.txt", "\nThis is appended data");
 
+// function should be a async
 // if a function       a keyword then the function msut be async
