@@ -169,3 +169,5 @@ const main = async () => {
 };
 
 main();
+
+// crud is show you how this do work on it in js and models
