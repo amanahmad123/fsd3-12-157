@@ -27,12 +27,14 @@ console.log(add2(20,10));
 
 
 
+
 // frontend:= 
 
 // react - html, css (tailwind , bootstip), event, 
 // vue js
 // class
 //angular 
+//vue js
 
 
 // // Bakend 
