@@ -41,4 +41,4 @@ console.log("Listener Removed!");
   ''
 button.dispatchEvent("click", {
     target: "submitBtn",
-});
+})
