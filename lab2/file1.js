@@ -2,6 +2,7 @@ import { writeFile, appendFile, readFile } from "fs/promises";
 
 // await writeFile("hello.txt", "js is very easy");
 // await appendFile("hello.txt", "\n is much easy than others");
+// await is basically use for waiting.....
 
 await appendFile("hello.txt", " 😂");
 
