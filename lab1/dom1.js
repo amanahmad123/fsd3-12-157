@@ -8,3 +8,8 @@ button.on("click" , () => {
     console.log("Button Clicked: ");
 });
 button.emit("click");
+
+console.log(
+    
+    "document object model"
+)
