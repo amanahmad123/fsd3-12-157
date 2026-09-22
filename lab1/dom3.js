@@ -4,7 +4,7 @@ const button = new EventEmitter();
 
 button.on("click" ,(uname) =>{
     console.log(`Button Clicked Me!  ${uname}`)
-});
+})
 
 
 
