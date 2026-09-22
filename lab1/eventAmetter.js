@@ -33,8 +33,7 @@ task.on("greeting", login);
 task.on("working", working);
 task.on("checkout", checkout);
 // task.once("blast", () => {
-//   console.log("shutdown blast");
-// }
+
 
 task.emit("greeting", "Mayank Bansal");
 task.emit("working", "Table");
