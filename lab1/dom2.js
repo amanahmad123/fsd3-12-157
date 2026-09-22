@@ -10,6 +10,7 @@ button.on("click" ,() =>{
     console.log("Button don't Clicked Me! ")
 });
 
+// EventEmitter
 
 button.emit("click");
 
