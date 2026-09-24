@@ -48,3 +48,5 @@ const getUserById = (pid) => {
 users.
 }
 
+const updateUser = (pid, updateData)
+
