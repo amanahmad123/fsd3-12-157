@@ -35,18 +35,3 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000, () => console.log("prg7 is running"));
-
-
-
-let nextId = 3; 
-
-const getAllUsers = () => {
-  return users;
-}
-
-const getUserById = (pid) => {
-users.
-}
-
-const updateUser = (pid, updateData)
-
