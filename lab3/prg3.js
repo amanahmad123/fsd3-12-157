@@ -12,3 +12,4 @@ server.listen(444,()=>{
 // npm-node package manager
 // npm i nodemon -D
 //working of nodemon -d
+// how to work on ndemon with the help of command
