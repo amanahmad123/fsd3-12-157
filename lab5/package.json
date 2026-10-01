@@ -1,9 +1,0 @@
-{
-  "name": "lab5",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "test.js",
-  "scripts": {
-    "test": "echo \"Error\""
-  }
-}
