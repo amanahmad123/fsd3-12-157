@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 
-// Temporary product data
+
 let products = [
     {
         id: 101,
@@ -20,18 +20,12 @@ let products = [
 ];
 
 
-// ========================================
-// GET - Get all products
-// ========================================
 
 app.get("/api/products", (req, res) => {
     res.json(products);
 });
 
 
-// ========================================
-// GET - Get one product
-// ========================================
 
 app.get("/api/products/:id", (req, res) => {
 
@@ -48,10 +42,6 @@ app.get("/api/products/:id", (req, res) => {
     res.json(product);
 });
 
-
-// ========================================
-// POST - Create a new product
-// ========================================
 
 app.post("/api/products", (req, res) => {
 
@@ -70,9 +60,6 @@ app.post("/api/products", (req, res) => {
 });
 
 
-// ========================================
-// PUT - Update entire product
-// ========================================
 
 app.put("/api/products/:id", (req, res) => {
 
@@ -95,10 +82,6 @@ app.put("/api/products/:id", (req, res) => {
     });
 });
 
-
-// ========================================
-// PATCH - Update part of product
-// ========================================
 
 app.patch("/api/products/:id", (req, res) => {
 
@@ -127,9 +110,6 @@ app.patch("/api/products/:id", (req, res) => {
 });
 
 
-// ========================================
-// DELETE - Delete product
-// ========================================
 
 app.delete("/api/products/:id", (req, res) => {
 
@@ -151,10 +131,6 @@ app.delete("/api/products/:id", (req, res) => {
     });
 });
 
-
-// ========================================
-// Start server
-// ========================================
 
 app.listen(3003, () => {
     console.log("Server running on port 3004");
