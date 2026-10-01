@@ -11,3 +11,4 @@ server.listen(444,()=>{
 // npm init -y ye package.json banayega taki hume bar bar server ko start aur stop na karna pade
 // npm-node package manager
 // npm i nodemon -D
+//working of nodemon -d
