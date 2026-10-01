@@ -17,7 +17,14 @@ app.get("/contact", (req, res)=> {
 })
 
 app.get("/product" , (req, res)=> {
-    res.send()
+    const product = {
+        id: 1, 
+        name: "aman", 
+        price: 324423,
+    };
+
+
+    res.send(product)
 })
 
 
