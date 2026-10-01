@@ -13,3 +13,4 @@ server.listen(444,()=>{
 // npm i nodemon -D
 //working of nodemon -d
 // how to work on ndemon with the help of command
+// how can you use nodemon with the help of nodemon 
